@@ -24,7 +24,7 @@ func NewClient(cmd *exec.Cmd) (*plugin.Client, Provider, error) {
 	}
 
 	// Request the plugin
-	raw, err := rpcClient.Dispense("provider")
+	raw, err := rpcClient.Dispense(ProviderPluginName)
 	if err != nil {
 		client.Kill()
 		return nil, nil, err

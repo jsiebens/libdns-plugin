@@ -9,6 +9,8 @@ import (
 	"github.com/jsiebens/libdns-plugin/internal/proto"
 )
 
+const ProviderPluginName = "provider"
+
 // Handshake is a common handshake that is shared by plugin and host.
 var Handshake = plugin.HandshakeConfig{
 	ProtocolVersion:  1,
@@ -18,7 +20,7 @@ var Handshake = plugin.HandshakeConfig{
 
 // PluginMap is the map of plugins we can dispense.
 var PluginMap = map[string]plugin.Plugin{
-	"provider": &ProviderPlugin{},
+	ProviderPluginName: &ProviderPlugin{},
 }
 
 type Provider interface {

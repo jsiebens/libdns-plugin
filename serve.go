@@ -18,7 +18,7 @@ func Serve(provider LibDNSProvider) {
 	plugin.Serve(&plugin.ServeConfig{
 		HandshakeConfig: Handshake,
 		Plugins: map[string]plugin.Plugin{
-			"provider": &ProviderPlugin{Impl: &configurableProvider{provider: provider}},
+			ProviderPluginName: &ProviderPlugin{Impl: &configurableProvider{provider: provider}},
 		},
 		GRPCServer: plugin.DefaultGRPCServer,
 	})
