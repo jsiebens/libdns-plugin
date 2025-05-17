@@ -1,0 +1,40 @@
+syntax = "proto3";
+package proto;
+option go_package = "./proto";
+
+import "google/protobuf/duration.proto";
+
+message Record {
+  string type = 1;
+  string name = 2;
+  string data = 3;
+  google.protobuf.Duration ttl = 4;
+}
+
+message ConfigureRequest {
+  bytes value = 1;
+}
+
+message ConfigureResponse {
+}
+
+message GetRecordsRequest {
+  string zone = 1;
+}
+
+message RecordsResponse {
+  repeated Record records = 1;
+}
+
+message RecordsRequest {
+  string zone = 1;
+  repeated Record records = 2;
+}
+
+service Provider {
+  rpc Configure(ConfigureRequest) returns (ConfigureResponse) {}
+  rpc GetRecords(GetRecordsRequest) returns (RecordsResponse) {}
+  rpc SetRecords(RecordsRequest) returns (RecordsResponse) {}
+  rpc AppendRecords(RecordsRequest) returns (RecordsResponse) {}
+  rpc DeleteRecords(RecordsRequest) returns (RecordsResponse) {}
+}
