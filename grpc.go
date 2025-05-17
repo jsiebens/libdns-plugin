@@ -99,11 +99,11 @@ func (g *GRPCServer) DeleteRecords(ctx context.Context, request *proto.RecordsRe
 func fromProto(records []*proto.Record) []libdns.Record {
 	result := make([]libdns.Record, len(records))
 	for i, record := range records {
-		result[i] = libdns.Record{
-			Name:  record.Name,
-			Type:  record.Type,
-			Value: record.Data,
-			TTL:   record.Ttl.AsDuration(),
+		result[i] = libdns.RR{
+			Name: record.Name,
+			Type: record.Type,
+			Data: record.Data,
+			TTL:  record.Ttl.AsDuration(),
 		}
 	}
 	return result
@@ -113,10 +113,10 @@ func toProto(records []libdns.Record) []*proto.Record {
 	result := make([]*proto.Record, len(records))
 	for i, record := range records {
 		result[i] = &proto.Record{
-			Name: record.Name,
-			Type: record.Type,
-			Data: record.Value,
-			Ttl:  durationpb.New(record.TTL),
+			Name: record.RR().Name,
+			Type: record.RR().Type,
+			Data: record.RR().Data,
+			Ttl:  durationpb.New(record.RR().TTL),
 		}
 	}
 	return result

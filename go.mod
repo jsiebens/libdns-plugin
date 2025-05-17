@@ -4,7 +4,7 @@ go 1.24
 
 require (
 	github.com/hashicorp/go-plugin v1.6.3
-	github.com/libdns/libdns v0.2.3
+	github.com/libdns/libdns v1.1.0
 	google.golang.org/grpc v1.72.1
 	google.golang.org/protobuf v1.36.6
 )
